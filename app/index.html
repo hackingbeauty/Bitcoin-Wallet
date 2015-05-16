@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>bitCash (Beta)</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({app,.tmp}) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css"           type="text/css">
+    <!-- endbuild-->
+
+    <!-- build:js bower_components/webcomponentsjs/webcomponents.min.js -->
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:vulcanized elements/elements.vulcanized.html -->
+    <link rel="import" href="elements/elements.html">
+    <!-- endbuild-->
+  </head>
+  <body fullbleed unresolved>
+     <!--[if lt IE 10]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Main Scaffold -->
+    <core-drawer-panel id="core-drawer-panel">
+      <core-header-panel drawer id="drawer">
+        <core-toolbar>
+          <div>
+              <h1>bitCash<span class="beta">&#160;(Beta)</span></h1>
+          </div>
+        </core-toolbar>
+        <div id="app-sidebar-container"></div>
+      </core-header-panel>
+      <core-header-panel main id="main-section">
+        <core-toolbar>
+          <core-icon-button icon="menu" core-drawer-toggle></core-icon-button>
+          <div id="app-header-container" tool></div>
+        </core-toolbar>
+        <div>
+            <div id="app-container"></div>
+        </div>
+      </core-header-panel>
+    </core-drawer-panel>
+    <!-- End Main Scaffold -->
+
+    <!-- Shell template -->
+    <script id="app-shell-template" type=“x-text/handlebars”>
+        <div id="app-shell" class="container-fluid">
+            <div class="row">
+                <div id="app-shell-body"></div>
+            </div>
+        </div><!-- #app-shell -->
+    </script>
+    <!-- End Shell template -->
+
+    <!-- Header template -->
+    <script id="app-header-template" type=“x-text/handlebars”>
+        <div id="app-header">
+            <ul id="app-authentication-buttons" class="pull-right"></ul>
+        </div><!-- #app-header -->
+    </script>
+    <!-- End Header template -->
+
+
+    <!-- Authentication buttons template -->
+    <script id="app-authentication-buttons-template" type=“x-text/handlebars”>
+        {{#if userSignedIn}} 
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img id="user-image" src="{{ userPhoto }}" alt="{{ displayName }}" />
+              </a>
+            </li>
+        {{/if}}
+    </script>
+    <!-- End Authentication buttons template -->
+
+    <!-- Login Modal template-->
+    <script id="app-login-modal-template" type=“x-text/handlebars”>
+        <div class="modal fade" id="app-login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4>Sign In</h4>
+                    </div>
+                    <div class="modal-body">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <ul id="app-provider-list" class="center-block">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <a data-provider="google" class="btn btn-block btn-social btn-google-plus">
+                                                    <i class="fa fa-google-plus"></i> Sign Into 
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!-- End Login Modal template-->
+
+    <!-- Alert Modal template-->
+    <script id="app-alert-modal-template" type=“x-text/handlebars”>
+        <div class="modal fade" id="app-modal-alert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <!-- alert modal content goes here -->
+            </div>
+        </div>
+    </script>
+    <!-- End Alert Modal template-->
+
+    <!-- Currency Pad template -->
+    <script id="app-currency-pad-template" type=“x-text/handlebars”>
+        <div id="app-currency-pad" data-animation="am-fade-and-slide-bottom">
+            <div id="app-currency-amount">0.00</div>
+            <div id="app-number-grid">
+                <ul touch-action="none">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                    <li id="app-clear-btn">.</li>
+                    <li>0</li>
+                    <li id="app-backspace-btn"><core-icon icon="backspace"></core-icon></li>
+                </ul>
+                <div id="app-currency-controls">
+                    <paper-button class="app-send-money-btn">Send</paper-button>
+                </div>
+            </div>
+        </div><!-- #app-currency-pad -->
+    </script>
+    <!-- End Currency Pad template -->
+
+    <!-- Login View Template -->
+    <script id="app-homepage-view-template" type=“x-text/handlebars”>
+        <div id="app-homepage-view" class="module">
+            <core-icon id="app"></core-icon>
+            <h1>bitCash</h1>
+        </div>
+    </script>
+    <!-- End Login View Template -->
+
+    <!-- Send Money Template -->
+    <script id="app-send-money-template" type=“x-text/handlebars”>
+        <div id="app-send-money" class="module move-to-left-animation">
+            <label>Amount</label>
+            <input value="${{ amountToSend }}" />
+            <form>
+                <label>To:</label>
+                <br />
+                <input placeholder="Enter recipient's email address" type="email" required />
+                <br />
+                <label>Memo:</label>
+                <br />
+                <textarea></textarea>
+                <br />
+                <input class="btn app-send-money-btn" type="submit" />
+            </form>
+        </div>
+    </script>
+    <!-- End Send Money Template -->
+
+    <!-- Sidebar Template -->
+    <script id="app-sidebar-template" type=“x-text/handlebars”>
+        <div id="app-sidebar"></div>
+    </script>
+    <!-- End Sidebar Template -->
+
+    <!-- Sidebar List Template -->
+    <script id="app-sidebar-list-template" type=“x-text/handlebars”>
+        <ul id="app-sidebar-list">
+            {{#if isSignedIn}}
+                <li class="item" data-link="account-balance">
+                    <core-icon icon="account-balance-wallet"></core-icon>
+                    <span>Account Balance</span>
+                </li>
+                <li class="item" data-link="send-money">
+                    <core-icon icon="account-circle"></core-icon>
+                    <span>Send Money</span>
+                </li>
+                <li class="item" data-link="sign-out">
+                    <core-icon icon="settings-power"></core-icon>
+                    <span>Sign Out</span>
+                </li>
+            {{ else }}
+                <li class="item" data-link="sign-in" data-provider="facebook">
+                    <core-icon icon="settings-power"></core-icon>
+                    <span>Sign In with Facebook</span>
+                </li>
+            {{/if}}
+        </ul>
+    </script>
+    <!-- End Sidebar List Template -->
+
+    <!-- Shell template -->
+    <script id="app-account-balance-template" type=“x-text/handlebars”>
+        <div id="app-account-balance" class="module">
+            Account Balance
+        </div><!-- #app-account-balance -->
+    </script>
+    <!-- End Shell template -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', '', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- build:js scripts/vendor.js -->
+    <script src="bower_components/jquery/dist/jquery.js"                             ></script>
+    <script src="bower_components/firebase/firebase.js"                              ></script>
+    <script src="bower_components/firebase-simple-login/firebase-simple-login.js"    ></script>
+    <script src="scripts/vendor/handlebars-v1.0.3.js"                                ></script>
+    <script src="scripts/vendor/jquery.event.gevent-0.1.9.js"                        ></script>
+    <script src="scripts/vendor/taffydb.js"                                          ></script>
+    <script src="scripts/vendor/jquery.uri-anchor.js"                                ></script>
+    <script src="scripts/vendor/bootstrap.js"                                        ></script>
+    <!-- endbuild -->
+
+    <!-- Firebase -->
+    <script>
+        var firebaseRef = new Firebase('https://simple-bitcoin-wallet.firebaseio.com');
+    </script>
+
+    <!-- build:js({app,.tmp}) scripts/main.js -->
+    <script src="scripts/main.js"                                           ></script>
+    <script src="scripts/app.js"                                            ></script>
+    <script src="scripts/config/app_config_real.js"                         ></script>
+    <script src="scripts/app-data.js"                                       ></script>
+    <script src="scripts/utilities/app-sound.js"                            ></script>
+    <script src="scripts/utilities/app-util.js"                             ></script>
+    <script src="scripts/utilities/app-handlebars-helper.js"                ></script>
+    <script src="scripts/models/app_model.js"                               ></script>
+    <script src="scripts/models/app_model_user.js"                          ></script>
+    <script src="scripts/models/app_model_key.js"                           ></script>
+    <script src="scripts/models/app_model_transaction.js"                   ></script>
+    <script src="scripts/models/app_model_money.js"                         ></script>
+    <script src="scripts/feature_modules/app_header.js"                     ></script>
+    <script src="scripts/feature_modules/app_alert_modal.js"                ></script>
+    <script src="scripts/feature_modules/app_currency_pad.js"               ></script>
+    <script src="scripts/feature_modules/app_homepage_view.js"              ></script>
+    <script src="scripts/feature_modules/app_sidebar.js"                    ></script>
+    <script src="scripts/feature_modules/app_send_money.js"                 ></script>
+    <script src="scripts/feature_modules/app_account_balance.js"                 ></script>
+    <script src="scripts/app_shell.js"                                      ></script>
+    <!-- endbuild -->
+
+    <script>
+        app.initModule( $('#app-container') );     
+    </script>
+
+  </body>
+</html>

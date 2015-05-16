@@ -1,0 +1,13 @@
+{
+  "short_name": "Simple Bitcoin Wallet",
+  "name": "Bitcoin Wallet used with Stellar-Wallet",
+   "icons": [
+    {
+      "src": "launcher-icon-3x.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone"
+}

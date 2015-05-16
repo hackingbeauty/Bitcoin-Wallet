@@ -1,0 +1,139 @@
+/*
+ * app.css
+ * General/universal styles
+*/
+
+html,
+body {
+  height: 100%;
+  color: white;
+}
+
+html { overflow-y:scroll; }
+
+body {
+  position: relative;
+}
+
+h1, h2,h3  {
+  color: white;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+li {
+  list-style-type:none;
+}
+
+dl, menu, ul, ol {
+  margin:0;
+  padding:0;
+}
+
+img,
+embed,
+object,
+video {
+  max-width: 100%;
+}
+
+input {
+  height: 50px;
+}
+
+input,
+label,
+textarea {
+  font-size: 20px;
+}
+
+.heading{
+  background: #2a3740;
+  padding: 10px;
+  border-bottom: 1px solid #0a0d0f;
+  h2 {
+    text-align:center;
+    a {
+      color: inherit;
+    }
+  }
+}
+
+.beta{
+  color: orange;
+  font-weight: bold;
+}
+
+
+.rounded {
+	border-radius: 5px;
+}
+
+.module {
+	padding: 20px;
+}
+
+.selected {
+  background: #01c461 !important;
+}
+
+.visible {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.label {
+  font-size: 16px;
+}
+
+.caret {
+}
+
+.error {
+  border: 2px solid red !important;
+  background: pink;
+}
+
+.btn {
+  background: #01c461;
+  color: white;
+  padding: 0px;
+  font-size: 18px;
+  width: 100%;
+}
+
+.ui-autocomplete-loading {
+  background: white url('../images/ui-anim_basic_16x16.gif') right center no-repeat;
+}
+
+paper-checkbox::shadow {
+  #checkbox.checked {
+    background-color: #01c461;
+    border-color: #01c461;
+  }
+}
+
+core-header-panel {
+   background: #0472a7;
+}
+
+core-header-panel{
+  &#main-section {
+    background : #0472a7;
+  }
+}
+
+core-header-panel::shadow {
+  background: black;
+}
+

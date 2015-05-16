@@ -1,0 +1,58 @@
+
+#app-currency-pad {
+
+	#app-currency-amount {
+		height: 120px;
+		font-size: 80px;
+		line-height: 183px;
+		text-align: center;
+		padding:0 5px;
+	}
+
+	#app-number-grid{
+		position: absolute;
+		bottom: 0px;
+		text-align: center;
+		width: 100%;
+		ul {
+			display: inline-block;
+			width: 92%;
+			li {
+				color: white;
+				width: 33.33%;
+				float: left;
+				padding-top: 27px;
+				text-align: center;
+				border-bottom: 1px solid #57BDFD;
+				border-right: 1px solid none;
+				border-left: 1px solid none;
+				font-size: 20px;
+				cursor: pointer;
+				&:active {
+					background: #00caf2;
+					color: white;
+				}
+				&#app-clear-btn {
+					padding-top: 20px;
+				}
+			}
+		}
+	}
+
+	#app-number-grid li,
+	#app-currency-controls {
+		height: 80px;
+		// background: #1d1918;
+	}
+
+	#app-currency-controls {
+		display: inline-block;
+		.app-send-money-btn {
+			font-size: 18px;
+			color: white;
+			cursor:pointer;
+			background: #04C959;
+			margin-top:13px;
+		}
+	}
+}
