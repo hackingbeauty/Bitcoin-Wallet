@@ -26,9 +26,7 @@
 	}
 
 	#app-send-money-details {
-		border-bottom: 1px solid #57BDFD;
-		padding-bottom: 20px;
-		margin-bottom: 20px;
+		margin-bottom: 40px;
 	}
 
 	#app-send-money-amount {
@@ -37,6 +35,22 @@
 
 	#app-friend-name {
 		font-size: 20px;
+	}
+
+	ul#app-friend-list {
+		margin-bottom: 20px;
+		li {
+			font-size: 20px;
+			border-top: 1px solid #57BDFD;
+			padding: 20px 10px;
+			&:last-child {
+				border-bottom: 1px solid #57BDFD;
+			}
+			paper-checkbox {
+				float: right;
+				margin-top: 5px;
+			}
+		}
 	}
 }
 

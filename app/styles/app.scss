@@ -131,6 +131,16 @@ core-header-panel::shadow {
   background: black;
 }
 
+paper-checkbox {
+  &::shadow {
+    #checkbox {
+      border: 1px solid white !important;
+      border-radius: 50px;
+    }
+  }
+
+}
+
 .app-money-amount{
   height: 180px;
   font-size: 80px;
