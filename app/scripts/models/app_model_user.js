@@ -126,7 +126,7 @@ app.model.user = (function () {
   };
 
   sign_in = function( provider ){
-    firebaseAuth.login( provider, { scope: 'public_profile, email, user_likes' } );
+    firebaseAuth.login( provider, { scope: 'public_profile,email,user_friends' } );
   };
 
   sign_out = function(){
@@ -159,7 +159,7 @@ app.model.user = (function () {
   };
 
   get_friends = function(callback){
-    var graphURL= 'https://graph.facebook.com/v2.0/me?fields=id,name&access_token=' + get_access_token();
+    var graphURL= 'https://graph.facebook.com/v2.0/me/friends?access_token=' + get_access_token();
     $.getJSON(graphURL).then(function(data) {
      console.log( data ); // will look like results of "try this one" above
      callback( data );

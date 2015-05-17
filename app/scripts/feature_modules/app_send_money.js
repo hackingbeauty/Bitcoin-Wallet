@@ -75,6 +75,9 @@ app.send_money = (function () {
   initModule = function ( $append_target ) {
     var amountToSend = app.model.money.get_amount_to_send();
     stateMap.$append_target = $append_target;
+    app.model.user.get_friends(function( friends ){
+      console.log('the FRIENDS  are: ', friends);
+    });
     $append_target.append( configMap.main_html({
       amountToSend: amountToSend
     }));
