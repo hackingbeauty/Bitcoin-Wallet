@@ -12,8 +12,8 @@
 	}
 
 	input {
-		width: 88%;
-		padding-left:20px;
+		width: 100%;
+		padding:0 10px;
 	}
 
 	.form-section {
@@ -38,4 +38,14 @@
 	#app-friend-name {
 		font-size: 20px;
 	}
+}
+
+@media only screen and (min-width: 900px){
+
+	#app-send-money{
+		input#app-payment-reason {
+			width: 83%;
+		}
+	}
+		
 }
