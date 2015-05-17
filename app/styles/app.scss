@@ -49,6 +49,7 @@ video {
 
 input {
   height: 50px;
+  color: black;
 }
 
 input,
@@ -104,13 +105,6 @@ textarea {
   background: pink;
 }
 
-.btn {
-  background: #01c461;
-  color: white;
-  padding: 0px;
-  font-size: 18px;
-  width: 100%;
-}
 
 .ui-autocomplete-loading {
   background: white url('../images/ui-anim_basic_16x16.gif') right center no-repeat;
@@ -137,3 +131,10 @@ core-header-panel::shadow {
   background: black;
 }
 
+.app-money-amount{
+  height: 180px;
+  font-size: 80px;
+  line-height: 183px;
+  text-align: center;
+  padding:0 5px;
+}

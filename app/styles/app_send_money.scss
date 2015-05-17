@@ -1,11 +1,41 @@
 #app-send-money{
-	input,
-	textarea {
-		width: 100%;
+
+	#app-send-money-amount{
+		position: relative;
+		top: -20px;
+	}
+
+	label {
+		float: left;
+		margin-right: 10px;
+		width: 80px;
+	}
+
+	input {
+		width: 88%;
+		padding-left:20px;
+	}
+
+	.form-section {
+		clear: both;
+		margin-bottom: 10px;
+	}
+
+	.controls {
+		text-align: center;
+	}
+
+	#app-send-money-details {
+		border-bottom: 1px solid #57BDFD;
+		padding-bottom: 20px;
 		margin-bottom: 20px;
 	}
-	paper-input {
-		width: 100%;
-		font-size: 30px;
+
+	#app-send-money-amount {
+		text-align: center;
+	}
+
+	#app-friend-name {
+		font-size: 20px;
 	}
 }
