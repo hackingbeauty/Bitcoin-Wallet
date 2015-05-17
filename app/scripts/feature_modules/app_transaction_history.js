@@ -1,6 +1,6 @@
 /*
- * app_send_money.js
- * Send Money feature module
+ * app_transaction_history.js
+ * Transation History feature module
 */
 
 /*jslint         browser    : true, continue : true,
@@ -12,18 +12,16 @@
 
 /*global $, app, Handlebars */
 
-app.send_money = (function () {
+app.transaction_history = (function () {
   'use strict';
   
   //---------------- BEGIN MODULE SCOPE VARIABLES --------------
   var
     configMap = {
-      main_html: Handlebars.compile($('#app-send-money-template').html())
+      main_html: Handlebars.compile($('#app-transaction-history-template').html())
     },
     stateMap  = { $container : null },
     jqueryMap = {},
-
-    onSendBtnClick,
 
     setJqueryMap, configModule, initModule;
   //----------------- END MODULE SCOPE VARIABLES ---------------
@@ -35,22 +33,16 @@ app.send_money = (function () {
   //--------------------- BEGIN DOM METHODS --------------------
   // Begin DOM method /setJqueryMap/
   setJqueryMap = function () {
-    var $container = stateMap.$append_target.find('#app-send-money');
+    var $container = stateMap.$append_target.find('#app-transaction-history');
     jqueryMap = { 
-      $container    : $container,
-      $friendList   : $container.find('#app-friend-list'),
-      $sendMoneyBtn : $container.find('.app-send-money-btn')
+      $container    : $container
     };
   };
   // End DOM method /setJqueryMap/
   //---------------------- END DOM METHODS ---------------------
 
   //------------------- BEGIN EVENT HANDLERS -------------------
-  onSendBtnClick = function(){
-    jqueryMap.$sendMoneyBtn.on('tap', function(){
-      $.uriAnchor.setAnchor( { transactionHistory: 'opened' } );
-    })
-  }
+
   //-------------------- END EVENT HANDLERS --------------------
 
   //------------------- BEGIN PUBLIC METHODS -------------------
@@ -81,16 +73,9 @@ app.send_money = (function () {
   // Throws     : none
   //
   initModule = function ( $append_target ) {
-    var amountToSend = app.model.money.get_amount_to_send();
     stateMap.$append_target = $append_target;
-    app.model.user.get_friends(function( friends ){
-      console.log('the FRIENDS  are: ', friends);
-    });
-    $append_target.append( configMap.main_html({
-      amountToSend: amountToSend
-    }));
+    $append_target.append( configMap.main_html );
     setJqueryMap();
-    onSendBtnClick();
     return true;
   };
   // End public method /initModule/
