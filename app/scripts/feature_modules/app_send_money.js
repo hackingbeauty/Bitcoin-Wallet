@@ -18,18 +18,28 @@ app.send_money = (function () {
   //---------------- BEGIN MODULE SCOPE VARIABLES --------------
   var
     configMap = {
-      main_html: Handlebars.compile($('#app-send-money-template').html())
+      main_html: Handlebars.compile($('#app-send-money-template').html()),
+      friend_item_html: Handlebars.compile($('#app-friend-item-template').html())
     },
     stateMap  = { $container : null },
     jqueryMap = {},
 
     onSendBtnClick,
+    onGetFriends,
 
     setJqueryMap, configModule, initModule;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
-  // example : getTrimmedString
+  onGetFriends = function(){
+    app.model.user.get_friends(function( friends ){
+      jqueryMap.$friendList.append(
+        configMap.friend_item_html({
+          friends: friends.data
+        })
+      )
+    });
+  };
   //-------------------- END UTILITY METHODS -------------------
 
   //--------------------- BEGIN DOM METHODS --------------------
@@ -83,14 +93,12 @@ app.send_money = (function () {
   initModule = function ( $append_target ) {
     var amountToSend = app.model.money.get_amount_to_send();
     stateMap.$append_target = $append_target;
-    app.model.user.get_friends(function( friends ){
-      console.log('the FRIENDS  are: ', friends);
-    });
     $append_target.append( configMap.main_html({
       amountToSend: amountToSend
     }));
     setJqueryMap();
     onSendBtnClick();
+    onGetFriends();
     return true;
   };
   // End public method /initModule/

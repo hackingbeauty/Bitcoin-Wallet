@@ -150,6 +150,14 @@
         <div id="app-homepage-view" class="module">
             <core-icon id="app"></core-icon>
             <h1>bitCash</h1>
+            <div id="app-homepage-view-login">
+                <div id="app-homepage-view-login-details">
+                    <div id="app-logo" alt="bitCash (Beta) Logo"></div>
+                    <span>Login
+                        <i class="fb-logo"></i>
+                    </span>
+                </div>
+            </div>
         </div>
     </script>
     <!-- End Login View Template -->
@@ -170,26 +178,24 @@
                     <input id="app-payment-reason" type="text" placeholder="What is the reason for this payment?" />
                 </div>
             </div>
-            <ul id="app-friend-list">
-                <li>
-                    <span>A > &nbsp; Allan H.</span>
-                    <paper-checkbox></paper-checkbox>
-                </li>
-                <li>
-                    <span>B > &nbsp; Bill T.</span>
-                    <paper-checkbox></paper-checkbox>
-                </li>
-                <li>
-                    <span>W > &nbsp; Wally W.</span>
-                    <paper-checkbox></paper-checkbox>
-                </li>
-            </ul>
+            <ul id="app-friend-list"></ul>
             <div class="controls">
                 <paper-button class="btn app-send-money-btn">Send</paper-button>
             </div>
         </div>
     </script>
     <!-- End Send Money Template -->
+
+    <!-- Friend List Item Template -->
+    <script id="app-friend-item-template" type=“x-text/handlebars”>
+        {{#each friends }}
+            <li>
+                <span>{{name}}</span>
+                <paper-checkbox></paper-checkbox>
+            </li>
+        {{/each}} 
+    </script>
+    <!-- End Friend List Item Template -->
 
     <!-- Sidebar Template -->
     <script id="app-sidebar-template" type=“x-text/handlebars”>
