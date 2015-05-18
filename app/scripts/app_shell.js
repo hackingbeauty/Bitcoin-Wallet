@@ -78,7 +78,7 @@ app.shell = (function () {
         app.account_balance.initModule( jqueryMap.$shellBody );
       } else if( /transactionHistory/.test( routeHash ) ){
         jqueryMap.$shellBody.empty();
-        app.transaction_history.initModule( jqueryMap.$shellBody );
+        app.transactions.initModule( jqueryMap.$shellBody );
       } else {
         jqueryMap.$shellBody.empty();
         app.currency_pad.initModule( jqueryMap.$shellBody );

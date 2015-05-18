@@ -1,5 +1,5 @@
 /*
- * app_transaction_history.js
+ * app_transactions.js
  * Transation History feature module
 */
 
@@ -12,13 +12,13 @@
 
 /*global $, app, Handlebars */
 
-app.transaction_history = (function () {
+app.transactions = (function () {
   'use strict';
   
   //---------------- BEGIN MODULE SCOPE VARIABLES --------------
   var
     configMap = {
-      main_html: Handlebars.compile($('#app-transaction-history-template').html())
+      main_html: Handlebars.compile($('#app-transactions-template').html())
     },
     stateMap  = { $container : null },
     jqueryMap = {},
@@ -33,7 +33,7 @@ app.transaction_history = (function () {
   //--------------------- BEGIN DOM METHODS --------------------
   // Begin DOM method /setJqueryMap/
   setJqueryMap = function () {
-    var $container = stateMap.$append_target.find('#app-transaction-history');
+    var $container = stateMap.$append_target.find('#app-transactions');
     jqueryMap = { 
       $container    : $container
     };

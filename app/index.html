@@ -243,20 +243,23 @@
     <!-- End Account Balance template -->
 
     <!-- Transaction History template -->
-    <script id="app-transaction-history-template" type=“x-text/handlebars”>
-        <div id="app-transction-history">
+    <script id="app-transactions-template" type=“x-text/handlebars”>
+        <div id="app-transactions">
             <div class="app-money-amount">
+                <span class="bal">BAL</span>
                 <span>$</span>
                 <span>1,200</span>
             </div>
-            <ul id="app-transaction-list" class="module">
-                <li>$20 ></li>
-                <li>$100 ></li>
-                <li>> $8</li>
-                <li>$42 ></li>
-                <li>> $500</li>
-            </ul>
-        </div><!-- #app-account-balance -->
+            <div class="module">
+                <ul id="app-transaction-list">
+                    <li>$20 &nbsp;></li>
+                    <li>$100 ></li>
+                    <li>> $8</li>
+                    <li>$42 ></li>
+                    <li>> $500</li>
+                </ul>
+            </div>
+        </div>
     </script>
     <!-- End Transaction History template -->
 
@@ -307,7 +310,7 @@
     <script src="scripts/feature_modules/app_sidebar.js"                    ></script>
     <script src="scripts/feature_modules/app_send_money.js"                 ></script>
     <script src="scripts/feature_modules/app_account_balance.js"            ></script>
-    <script src="scripts/feature_modules/app_transaction_history.js"        ></script>
+    <script src="scripts/feature_modules/app_transactions.js"               ></script>
     <script src="scripts/app_shell.js"                                      ></script>
     <!-- endbuild -->
 
