@@ -23,6 +23,8 @@ app.homepage_view = (function () {
     stateMap  = { $container : null },
     jqueryMap = {},
 
+    onLoginClick,
+
     setJqueryMap, configModule, initModule;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -35,13 +37,22 @@ app.homepage_view = (function () {
   setJqueryMap = function () {
     var $container = stateMap.$append_target.find('#app-homepage-view');
 
-    jqueryMap = { $container : $container };
+    jqueryMap = { 
+      $container    : $container,
+      $loginDetails : $container.find('#app-homepage-view-login-details')
+    };
   };
   // End DOM method /setJqueryMap/
   //---------------------- END DOM METHODS ---------------------
 
   //------------------- BEGIN EVENT HANDLERS -------------------
-
+  onLoginClick = function(){
+    var provider;
+    jqueryMap.$loginDetails.on('tap', function(){
+      provider = $(this).data('provider');
+      app.model.user.sign_in( provider );
+    });
+  }
   //-------------------- END EVENT HANDLERS --------------------
 
 
@@ -77,6 +88,7 @@ app.homepage_view = (function () {
     stateMap.$append_target = $append_target;
     $append_target.append( configMap.main_html );
     setJqueryMap();
+    onLoginClick();
     return true;
   };
   // End public method /initModule/
