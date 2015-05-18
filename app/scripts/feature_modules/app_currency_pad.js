@@ -43,7 +43,8 @@ app.currency_pad = (function () {
       $amount       : $container.find('#app-currency-amount'),
       $clearBtn     : $container.find('#app-clear-btn'),
       $backSpaceBtn : $container.find('#app-backspace-btn'),
-      $sendMoneyBtn : $container.find('.app-send-money-btn')
+      $sendMoneyBtn : $container.find('.app-send-money-btn'),
+      $amountDigits : $container.find('#app-currency-amount-digits')
     };
   };
   // End DOM method /setJqueryMap/
@@ -63,24 +64,24 @@ app.currency_pad = (function () {
       $btn = $(this);
       switch($btn.attr('id')){
         case jqueryMap.$clearBtn.attr('id'):
-          jqueryMap.$amount.html('0.00');
+          jqueryMap.$amountDigits.html('0.00');
           totalAmt = '';
           break;
         case jqueryMap.$backSpaceBtn.attr('id'):
-          currencyVal = parseInt(jqueryMap.$amount.html(),10)
-          rawVal = parseInt(jqueryMap.$amount.html(),10).toString(); //Remove .00 and convert to string
+          currencyVal = parseInt(jqueryMap.$amountDigits.html(),10)
+          rawVal = parseInt(jqueryMap.$amountDigits.html(),10).toString(); //Remove .00 and convert to string
           newCurrencyVal = rawVal.substr(0, rawVal.length-1);
           totalAmt = newCurrencyVal;
           if(!isNaN( newCurrencyVal )&& newCurrencyVal.split('').length > 0){ // If it's a number
-            jqueryMap.$amount.html(newCurrencyVal + '.00');
+            jqueryMap.$amountDigits.html(newCurrencyVal + '.00');
           } else {
-            jqueryMap.$amount.html('0.00');
+            jqueryMap.$amountDigits.html('0.00');
           }
           break;
         default:
           number = $btn.html();
           totalAmt = totalAmt + number;
-          jqueryMap.$amount.html(totalAmt + '.00');
+          jqueryMap.$amountDigits.html(totalAmt + '.00');
           break;
       }
     });
@@ -89,7 +90,7 @@ app.currency_pad = (function () {
   onSendMoney = function(){
     var amountToSend;
     jqueryMap.$sendMoneyBtn.on('tap', function(){
-      amountToSend = parseInt(jqueryMap.$amount.html());
+      amountToSend = parseInt(jqueryMap.$amountDigits.html());
       if(amountToSend > 0){
         app.model.money.set_amount_to_send( amountToSend );
         $.uriAnchor.setAnchor( { sendMoney: 'opened' } );

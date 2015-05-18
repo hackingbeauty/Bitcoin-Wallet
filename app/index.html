@@ -121,7 +121,10 @@
     <!-- Currency Pad template -->
     <script id="app-currency-pad-template" type=“x-text/handlebars”>
         <div id="app-currency-pad" data-animation="am-fade-and-slide-bottom">
-            <div id="app-currency-amount" class="app-money-amount">0.00</div>
+            <div id="app-currency-amount" class="app-money-amount">
+                <span>$</span>
+                <span id="app-currency-amount-digits" >0.00</span>
+            </div>
             <div id="app-number-grid">
                 <ul touch-action="none">
                     <li>1</li>
@@ -167,6 +170,7 @@
     <script id="app-send-money-template" type=“x-text/handlebars”>
         <div id="app-send-money" class="module move-to-left-animation">
             <div id="app-send-money-amount" class="app-money-amount">
+                <span>$</span>
                 <span class="amount">{{ amountToSend }}</span>
             </div>
             <div id="app-send-money-details">
