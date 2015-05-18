@@ -49,9 +49,13 @@
 			&:last-child {
 				border-bottom: 1px solid #57BDFD;
 			}
+			img {
+				margin-right: 20px;
+				border-radius: 50px;
+			}
 			paper-checkbox {
 				float: right;
-				margin-top: 5px;
+				margin-top: 15px;
 			}
 		}
 	}

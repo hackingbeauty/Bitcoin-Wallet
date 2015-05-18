@@ -195,7 +195,7 @@
     <script id="app-friend-item-template" type=“x-text/handlebars”>
         {{#each friends }}
             <li>
-                <span>{{name}}</span>
+                <span><img src="https://graph.facebook.com/v2.0/{{id}}/picture" alt="{{name}}" />{{name}}</span>
                 <paper-checkbox></paper-checkbox>
             </li>
         {{/each}} 
