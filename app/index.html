@@ -244,8 +244,18 @@
 
     <!-- Transaction History template -->
     <script id="app-transaction-history-template" type=“x-text/handlebars”>
-        <div id="app-transction-history" class="module">
-            Transaction History
+        <div id="app-transction-history">
+            <div class="app-money-amount">
+                <span>$</span>
+                <span>1,200</span>
+            </div>
+            <ul id="app-transaction-list" class="module">
+                <li>$20 ></li>
+                <li>$100 ></li>
+                <li>> $8</li>
+                <li>$42 ></li>
+                <li>> $500</li>
+            </ul>
         </div><!-- #app-account-balance -->
     </script>
     <!-- End Transaction History template -->
